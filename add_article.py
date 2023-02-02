@@ -17,6 +17,10 @@ blog.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 til = subs.add_parser('til', usage='til ARTICLE_NAME', help='see `til -h`', description='TIL記事を追加する')
 til.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
+til = subs.add_parser('dialogue', usage='dialogue ARTICLE_NAME', help='see `dialogue -h`',
+                      description='chatGPTとの問答を追加する')
+til.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
+
 args = parser.parse_args()
 
 if args.subcommand is None:
