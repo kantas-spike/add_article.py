@@ -17,9 +17,12 @@ blog.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 til = subs.add_parser('til', usage='til ARTICLE_NAME', help='see `til -h`', description='TIL記事を追加する')
 til.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
-til = subs.add_parser('dialogue', usage='dialogue ARTICLE_NAME', help='see `dialogue -h`',
+dia = subs.add_parser('dialogue', usage='dialogue ARTICLE_NAME', help='see `dialogue -h`',
                       description='chatGPTとの問答を追加する')
-til.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
+dia.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
+
+memo = subs.add_parser('memo', usage='til ARTICLE_NAME', help='see `memo -h`', description='メモ記事を追加する')
+memo.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
 args = parser.parse_args()
 
