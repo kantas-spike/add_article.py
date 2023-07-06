@@ -20,9 +20,9 @@ BLOGに記事を追加する場合は以下を実行します
 
 問答(dialogue)を追加する場合は以下を実行します
 
-```shell
+~~~shell
 ~/bin/add_article.py dialogue ARTICLE_NAME
-```
+~~~
 
 連番をプレフィックスにつけたファイルが作成し、VsCodeでオープンします
 
