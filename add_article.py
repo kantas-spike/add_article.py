@@ -11,17 +11,18 @@ PREFIX_SEPARATOR = '-'
 
 parser = argparse.ArgumentParser(description='Hugoのサイトに指定したタイプの記事を追加する\n必ずHugoのサイトディレクトリで実行してください')
 subs = parser.add_subparsers(dest='subcommand')
-blog = subs.add_parser('blog', usage='blog ARTICLE_NAME', help='see `blog -h`', description='Blog記事を追加する ')
-blog.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
+articles = subs.add_parser('articles', usage='articles ARTICLE_NAME', help='see `articles -h`',
+                           description='Articles用の記事を追加する')
+articles.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
-til = subs.add_parser('til', usage='til ARTICLE_NAME', help='see `til -h`', description='TIL記事を追加する')
+til = subs.add_parser('til', usage='til ARTICLE_NAME', help='see `til -h`', description='TIL用の記事を追加する')
 til.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
-dia = subs.add_parser('dialogue', usage='dialogue ARTICLE_NAME', help='see `dialogue -h`',
+dia = subs.add_parser('dialogues', usage='dialogues ARTICLE_NAME', help='see `dialogues -h`',
                       description='chatGPTとの問答を追加する')
 dia.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
-memo = subs.add_parser('memo', usage='til ARTICLE_NAME', help='see `memo -h`', description='メモ記事を追加する')
+memo = subs.add_parser('notes', usage='notes ARTICLE_NAME', help='see `notes -h`', description='Notes用の記事を追加する')
 memo.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
 args = parser.parse_args()
