@@ -23,6 +23,7 @@ def get_last_prefix_no(target_dir, prefix_separator=PREFIX_SEPARATOR):
 
 
 parser = argparse.ArgumentParser(description='Hugoのサイトに指定したタイプの記事を追加する\n必ずHugoのサイトディレクトリで実行してください')
+parser.add_argument('-l', '--leaf-bundle', action='store_true', help="Leaf Bundle形式で記事を作成する")
 subs = parser.add_subparsers(dest='subcommand')
 articles = subs.add_parser('articles', usage='articles ARTICLE_NAME', help='see `articles -h`',
                            description='Articles用の記事を追加する')
@@ -57,7 +58,14 @@ if not os.path.isdir(target_dir):
 
 max_no = get_last_prefix_no(target_dir)
 
-target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}.md")
+if args.leaf_bundle:
+    target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}/index.md")
+    leaf_dir = os.path.dirname(target_file)
+    if not os.path.isdir(leaf_dir):
+        os.mkdir(leaf_dir)
+else:
+    target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}.md")
+
 hugo_command = f"hugo new '{target_file}' --editor code"
 # print(hugo_command)
 os.system(hugo_command)
