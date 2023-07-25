@@ -2,12 +2,25 @@
 
 import argparse
 import os
+import re
 import sys
-import glob
 
 
 CONTENT_DIR = os.path.abspath("./content")
 PREFIX_SEPARATOR = '-'
+
+
+def get_last_prefix_no(target_dir, prefix_separator=PREFIX_SEPARATOR):
+    max_no = 0
+    for f in os.listdir(target_dir):
+        f_name = os.path.basename(f)
+        if result := re.match("([0-9]+)-.*", f_name):
+            # print(f_name)
+            no = int(result[1])
+            if no > max_no:
+                max_no = no
+    return max_no
+
 
 parser = argparse.ArgumentParser(description='Hugoのサイトに指定したタイプの記事を追加する\n必ずHugoのサイトディレクトリで実行してください')
 subs = parser.add_subparsers(dest='subcommand')
@@ -42,18 +55,7 @@ target_dir = os.path.join(CONTENT_DIR, args.subcommand)
 if not os.path.isdir(target_dir):
     os.mkdir(target_dir)
 
-max_no = 0
-for f in glob.glob(os.path.join(target_dir, "**.md")):
-    info = os.path.basename(f).split(PREFIX_SEPARATOR, 1)
-    print(info)
-    if len(info) != 2:
-        continue
-    try:
-        no = int(info[0])
-        if no > max_no:
-            max_no = no
-    except ValueError:
-        continue
+max_no = get_last_prefix_no(target_dir)
 
 target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}.md")
 hugo_command = f"hugo new '{target_file}' --editor code"
