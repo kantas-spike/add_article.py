@@ -62,7 +62,7 @@ if args.leaf_bundle:
     target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}/index.md")
     leaf_dir = os.path.dirname(target_file)
     if not os.path.isdir(leaf_dir):
-        os.mkdir(leaf_dir)
+        os.mkdir(os.path.join(CONTENT_DIR, leaf_dir))
 else:
     target_file = os.path.join(args.subcommand, f"{max_no+1:02}{PREFIX_SEPARATOR}{args.name}.md")
 
