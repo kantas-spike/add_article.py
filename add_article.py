@@ -36,9 +36,6 @@ dia = subs.add_parser('dialogues', usage='dialogues ARTICLE_NAME', help='see `di
                       description='chatGPTとの問答を追加する')
 dia.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
 
-memo = subs.add_parser('notes', usage='notes ARTICLE_NAME', help='see `notes -h`', description='Notes用の記事を追加する')
-memo.add_argument('name', type=str, metavar='ARTICLE_NAME', help='記事名')
-
 args = parser.parse_args()
 
 if args.subcommand is None:
