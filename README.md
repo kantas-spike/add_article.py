@@ -12,12 +12,6 @@ hugoで管理しているサイトに記事を追加するためのユーティ�
 ~/bin/add_article.py til ARTICLE_NAME
 ~~~
 
-Notesに記事を追加する場合は以下を実行します
-
-~~~shell
-~/bin/add_article.py notes ARTICLE_NAME
-~~~
-
 問答(dialogues)を追加する場合は以下を実行します
 
 ~~~shell
@@ -31,7 +25,7 @@ Notesに記事を追加する場合は以下を実行します
 以下のように`-l`オプションを付けてください
 
 ~~~shell
-~/bin/add_article.py -l notes ARTICLE_NAME
+~/bin/add_article.py -l articles ARTICLE_NAME
 ~~~
 
 ## インストール方法
@@ -46,16 +40,15 @@ make
 
 ~~~shell
 ~/bin/add_article.py -h
-usage: add_article.py [-h] [-l] {articles,til,dialogues,notes} ...
+usage: add_article.py [-h] [-l] {articles,til,dialogues} ...
 
 Hugoのサイトに指定したタイプの記事を追加する 必ずHugoのサイトディレクトリで実行してください
 
 positional arguments:
-  {articles,til,dialogues,notes}
+  {articles,til,dialogues}
     articles            see `articles -h`
     til                 see `til -h`
     dialogues           see `dialogues -h`
-    notes               see `notes -h`
 
 options:
   -h, --help            show this help message and exit
